@@ -1,16 +1,8 @@
-% impulse_response.m test MATLAB script
+% This tests whether the impulse_response.m function works
 
-% time vector
-t = 1:1e6:100;
-
-% frequency
-f = 10e3;
-
-% input and output
-x = sin(2*pi*f.*t);
-y = cos(2*pi*f.*t);
-
-% sampling rate
-fs = 2*f;
-
-[h,t] = impulse_response(x,y,fs);
+fs=10;
+t=-1:1/fs:1;
+x=cos(2*pi*t);    % input signal
+y=3*cos(2*pi*t);  % output signal
+[h,t]=impulse_response(x,y,fs);   % we expect the impulse response to be
+amplitude=(1/fs)*trapz(h)         % a dirac delta with amplitude 3
